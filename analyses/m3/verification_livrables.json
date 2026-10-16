@@ -18,8 +18,8 @@
     "faible": 17,
     "moyen": 5
   },
-  "pages_pdf_risques": 9,
-  "liens_pdf_risques": 21,
+  "pages_pdf_risques": 11,
+  "liens_pdf_risques": 25,
   "pages_pdf_aipd": 5,
   "liens_pdf_aipd": 10,
   "moteur_calcul": "artifact-tool ; dernière ligne et entrée vide testées dans le générateur",
@@ -30,5 +30,7 @@
   "supports_sha256": {
     "TP_M3_2_Analyse_risques.xlsx": "0bbefee4d54cc09bf7940afa15315059a2a8212483b3290a01134c6a52502d8d",
     "TP_M3_2_Analyse_risques_etudiant.pdf": "79cea624f5714bc33609f187b2e11c3cb4761734a078cac13c8b237a01ea47c7"
-  }
+  },
+  "risques_relies_aux_exigences": 22,
+  "classe_logiciel_proposee": "IIa, règle 11 ; à confirmer selon destination et conséquences des erreurs"
 }

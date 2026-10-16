@@ -16,6 +16,16 @@ L’analyse de risques du dispositif traite les pannes et erreurs pouvant causer
 
 **Conservation retenue :** historique sur le PC de l’utilisateur pendant la durée du suivi, avec suppression possible à tout moment et prévue à la fin du suivi, après possibilité d’export. Ce principe s’inspire des historiques de montres connectées ; ce n’est pas une durée légale universelle. La durée des signaux bruts et diagnostics doit être justifiée séparément. **La suppression et la clôture du suivi restent à développer et tester** : la passerelle actuelle ajoute les données au CSV sans purge automatique.
 
+## Destination médicale et réglementation
+
+Le dossier décrit un prototype pédagogique, sans mise sur le marché médicale ni certification démontrée. **La destination future retenue est médicale** : fournir au professionnel des recommandations personnalisées pour la prise en charge des TMS. Cette fonction reste à développer et à valider.
+
+La **classe IIa est proposée pour le logiciel selon la règle 11** du règlement (UE) 2017/745. Elle doit être confirmée à partir des conséquences des décisions erronées : une détérioration grave ou une intervention chirurgicale peut relever de IIb ; un décès ou une détérioration irréversible, de III. Un usage non urgent et la présence d’un professionnel ne suffisent pas à garantir IIa. Le rôle de la souris matérielle (partie du dispositif, accessoire ou produit séparé) reste à préciser. Pour une mise sur le marché en IIa, un organisme notifié intervient dans l’évaluation de conformité.
+
+Le nouvel onglet **Réglementation** relie chacun des 22 risques aux exigences à examiner, à son application au projet et à la vérification attendue. Deux pages du PDF reprennent la qualification et cette correspondance. Les références et associations sont dans [reglementation.json](sources/reglementation.json), commun aux générateurs. Ce rapprochement ne constitue pas une preuve de conformité ni un inventaire exhaustif de toutes les obligations de commercialisation.
+
+**La classe réglementaire ne se calcule pas avec la matrice G × P du TP.** Les cotations des 22 risques restent inchangées. L’AIPD demeure séparée : le RGPD concerne le traitement des données, indépendamment de la classe médicale. ISO 14971 est une norme de méthode, distincte du règlement.
+
 ## Résultat de l'exercice
 
 22 scénarios : 15 techniques, 5 d'utilisation et 2 de cybersécurité. Avant les mesures proposées : 6 élevés et 16 moyens. Après mesures, la **cible pédagogique** est de 5 moyens et 17 faibles. Plusieurs scénarios partagent des causes : ces comptes ne mesurent pas des événements indépendants.

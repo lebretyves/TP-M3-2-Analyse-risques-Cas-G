@@ -10,6 +10,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 ROOT=Path(__file__).resolve().parents[1]
 D=json.loads((ROOT/'sources/risques.json').read_text(encoding='utf-8'))
+REG=json.loads((ROOT/'sources/reglementation.json').read_text(encoding='utf-8'))
 pdfmetrics.registerFont(TTFont('Arial','C:/Windows/Fonts/arial.ttf'))
 pdfmetrics.registerFont(TTFont('Arial-Bold','C:/Windows/Fonts/arialbd.ttf'))
 pdfmetrics.registerFontFamily('Arial',normal='Arial',bold='Arial-Bold',italic='Arial',boldItalic='Arial-Bold')
@@ -38,6 +39,18 @@ add('3. Quels risques sont les plus élevés ?','HeadingCustom')
 add('Le score maximal retenu est <b>6</b>, pour six risques : batterie (2), alimentation (3), posture contrainte (6), liquide (11), chute et détérioration (12), intervention avec batterie connectée (20). Les scénarios de gravité 3 demandent une attention prioritaire. Certains partagent des causes ; les comptes ne représentent pas des événements indépendants.')
 tab([['Niveau','Avant mesures','Après mesures : cible'],['Élevé','6','0'],['Moyen','16','5'],['Faible','0','17']],[170,150,190])
 add('G et P : 1 à 3 ; risque = G × P. Faible : 1–2 ; moyen : 3–4 ; élevé : 6–9. Les probabilités sont des hypothèses pédagogiques. <b>Les scores après mesures sont conditionnels aux essais : ils ne décrivent pas la sécurité actuelle du prototype.</b>','SmallText')
+story.append(PageBreak());title('Destination médicale et classe proposée')
+for q in REG['qualification']:
+ add(q['titre'],'HeadingCustom');add(escape(q['texte']))
+add('Références réglementaires et guides','HeadingCustom')
+for source in REG['sources']:
+ add(f"<b>[{source['id']}]</b> <link href='{escape(source['url'])}' color='#205E8A'>{escape(source['titre'])}</link>",'SmallText')
+add('Les guides MDCG accompagnent l’interprétation du règlement ; ils ne constituent pas une certification du projet. Références consultées le 16 octobre 2026.','SmallText')
+story.append(PageBreak());title('Relier les 22 risques aux exigences')
+add(escape(REG['cadre']),'SmallText')
+tab([['Risques / thème','Références à examiner','Exigence concernée']]+[[', '.join(map(str,g['ids']))+' - '+g['theme'],g['references'],g['exigence']] for g in REG['groupes']],[145,215,150])
+add('L’onglet <b>Réglementation</b> détaille chaque risque, l’application au projet et la preuve attendue. Les essais sont repris des lignes du TP pour conserver le lien entre exigence, mesure et vérification. Les risques et leurs cotations restent inchangés.','SmallText')
+add(escape(REG['limites']),'SmallText')
 for start in range(0,len(D['risques']),5):
  end=min(start+5,len(D['risques']))
  story.append(PageBreak());title(f'2. Les chaînes de risque — {start+1} à {end}')
@@ -75,6 +88,6 @@ SimpleDocTemplate(str(out),pagesize=A4,leftMargin=42,rightMargin=42,topMargin=35
 import pymupdf
 (ROOT/'tmp').mkdir(exist_ok=True)
 pdf=pymupdf.open(out)
-assert len(pdf)==(len(D['risques'])+4)//5+4,len(pdf)
+assert len(pdf)==(len(D['risques'])+4)//5+6,len(pdf)
 for i,page in enumerate(pdf):page.get_pixmap(matrix=pymupdf.Matrix(1.3,1.3)).save(ROOT/f'tmp/tp_risques_{i+1}.png')
 print(f'PDF : {len(pdf)} pages ; {sum(len(p.get_links()) for p in pdf)} liens.')

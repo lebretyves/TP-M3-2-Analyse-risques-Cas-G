@@ -4,6 +4,7 @@ import {FileBlob, SpreadsheetFile} from '@oai/artifact-tool';
 process.on('uncaughtException',err=>{console.error(err.message);console.error((err.stack||'').split('\n').filter(x=>x.includes('build.mjs')).join('\n'));process.exit(1);});
 const root=new URL('../',import.meta.url);
 const data=JSON.parse(await fs.readFile(new URL('sources/risques.json',root),'utf8'));
+const reg=JSON.parse(await fs.readFile(new URL('sources/reglementation.json',root),'utf8'));
 const initial={risques:data.risques.filter(r=>r.id<=10),sources:data.sources.filter(s=>s.id.startsWith('S'))};
 const supplement={risques:data.risques.filter(r=>r.id>=11),sources:data.sources.filter(s=>s.id.startsWith('C'))};
 const wb=await SpreadsheetFile.importXlsx(await FileBlob.load(fileURLToPath(new URL('supports/TP_M3_2_Analyse_risques.xlsx',root))));
@@ -150,6 +151,37 @@ for(const [i,src] of supplement.sources.entries()){
 }
 n.freezePanes.freezeRows(3);n.freezePanes.freezeColumns(1);
 
+const legal=wb.worksheets.add('Réglementation');legal.showGridLines=false;
+const legalWidths={A:7,B:40,C:39,D:34,E:57,F:62,G:21};
+for(const [col,width] of Object.entries(legalWidths))legal.getRange(`${col}1:${col}40`).format.columnWidth=width;
+legal.getRange('A1:G1').merge();legal.getRange('A1').values=[['Destination médicale, classification et traçabilité des risques']];
+legal.getRange('A1:G1').format={font:{name:'Arial',size:14,bold:true},rowHeight:30};
+for(const [i,q] of reg.qualification.entries()){
+ const row=i+3;legal.getRange(`A${row}:G${row}`).merge();
+ legal.getRange(`A${row}`).values=[[q.titre+' : '+q.texte]];
+ legal.getRange(`A${row}:G${row}`).format={font:{name:'Arial',size:11},wrapText:true,rowHeight:43,verticalAlignment:'top'};
+}
+legal.getRange('A8:G8').merge();legal.getRange('A8').values=[[reg.cadre]];
+legal.getRange('A8:G8').format={font:{name:'Arial',size:11,color:'#8A3E00'},wrapText:true,rowHeight:43};
+legal.getRange('A10:G10').values=[['Risque','Danger du TP','Références à examiner','Exigence concernée','Application au projet','Preuve / vérification à produire','État']];
+legal.getRange('A10:G10').format={fill:'#1F4E78',font:{name:'Arial',size:11,color:'#FFFFFF',bold:true},wrapText:true,rowHeight:35};
+legal.getRange('A11:G32').values=data.risques.map(r=>{
+ const group=reg.groupes.filter(g=>g.ids.includes(r.id));
+ if(group.length!==1)throw new Error('Rapprochement réglementaire manquant ou ambigu : '+r.id);
+ const g=group[0];return [r.id,r.danger,g.references,g.exigence,g.application,r.test,'À vérifier ; conformité non démontrée'];
+});
+legal.getRange('A11:G32').format={font:{name:'Arial',size:11},wrapText:true,verticalAlignment:'top',rowHeight:115};
+legal.getRange('A34:G34').merge();legal.getRange('A34').values=[[reg.limites]];
+legal.getRange('A34:G34').format={font:{name:'Arial',size:11},wrapText:true,rowHeight:46};
+for(const [i,source] of reg.sources.entries()){
+ const row=36+i;legal.getRange(`B${row}:C${row}`).merge();legal.getRange(`D${row}:G${row}`).merge();
+ legal.getRange(`A${row}`).values=[[source.id]];legal.getRange(`B${row}`).values=[[source.titre]];legal.getRange(`D${row}`).values=[[source.url]];
+ legal.getRange(`A${row}:G${row}`).format={font:{name:'Arial',size:11},wrapText:true,rowHeight:42,verticalAlignment:'top'};
+}
+legal.freezePanes.freezeRows(10);legal.freezePanes.freezeColumns(2);
+read.getRange('A32').values=[['Réglementation : destination médicale future, classe IIa proposée pour le logiciel (règle 11), statut matériel à préciser et correspondance entre chacun des 22 risques et les exigences à vérifier. La cotation du TP ne détermine pas la classe réglementaire.']];
+read.getRange('A32').format={wrapText:true,rowHeight:64,font:{size:11},verticalAlignment:'top'};
+
 wb.recalculate();
 // Independent arithmetic and summary checks, including the two rows beyond the original template.
 for(const [i,r] of data.risques.entries()){
@@ -164,15 +196,20 @@ if(s.getRange(`P${last}`).values[0][0]!==6||syn.getRange('B16').values[0][0]!==1
 s.getRange(`O${last}`).values=[[null]];wb.recalculate();
 if(s.getRange(`P${last}`).values[0][0]!==''||s.getRange(`Q${last}`).values[0][0]!=='')throw new Error('Blank input is not blank output');
 s.getRange(`O${last}`).values=[[1]];wb.recalculate();
-for(let i=0;i<6;i++)for(const row of wb.worksheets.getItemAt(i).getUsedRange().values)for(const v of row)if(typeof v==='string'&&/^#(REF!|DIV\/0!|VALUE!|NAME\?|N\/A|NUM!|SPILL!|CALC!)/.test(v))throw new Error(v);
+for(let i=0;i<7;i++)for(const row of wb.worksheets.getItemAt(i).getUsedRange().values)for(const v of row)if(typeof v==='string'&&/^#(REF!|DIV\/0!|VALUE!|NAME\?|N\/A|NUM!|SPILL!|CALC!)/.test(v))throw new Error(v);
 await fs.mkdir(new URL('tmp/previews_22/',root),{recursive:true});
 const previews=[['Lisez-moi','A22:A30','lisez_moi'],['Échelles','A24:D32','echelles'],['Synthèse','A1:H19','synthese'],['Failles et preuves','A1:H6','preuves_debut'],['Failles et preuves','A12:H15','preuves_fin'],['Failles et preuves','A21:H26','sources_debut'],['Failles et preuves','A31:H34','sources_fin'],['Suivi et sources','A1:D6','suivi'],['Analyse de risques','A1:R8','entete']];
+previews.push(['Réglementation','A1:G10','reg_cadre'],['Réglementation','A34:G39','reg_sources'],['Lisez-moi','A28:A32','reg_lisez_moi']);
+for(let lo=11;lo<=32;lo+=4)previews.push(['Réglementation',`A${lo}:G${Math.min(lo+3,32)}`,`reg_${lo}`]);
 for(const [lo,hi] of [[19,21],[22,24],[25,27],[28,30]]){
  previews.push(['Analyse de risques',`A${lo}:J${hi}`,`avant_${lo}`]);previews.push(['Analyse de risques',`K${lo}:R${hi}`,`apres_${lo}`]);
 }
 for(const [sheetName,range,file] of previews){
  const img=await wb.render({sheetName,range,scale:1,format:'png'});await fs.writeFile(new URL(`tmp/previews_22/${file}.png`,root),new Uint8Array(await img.arrayBuffer()));
 }
-const out=await SpreadsheetFile.exportXlsx(wb);await out.save(fileURLToPath(new URL('analyses/m3/analyse_risques_eq02.xlsx',root)));
+const out=await SpreadsheetFile.exportXlsx(wb);
+const staged=fileURLToPath(new URL('tmp/analyse_risques_eq02_prepare.xlsx',root));
+await out.save(staged);
+await fs.copyFile(staged,fileURLToPath(new URL('analyses/m3/analyse_risques_eq02.xlsx',root)));
 await fs.writeFile(new URL('tmp/verification_22.json',root),JSON.stringify({scenarios:22,ids:data.risques.map(r=>r.id),counts,initial:{eleves:6,moyens:16,faibles:0},cible:{eleves:0,moyens:5,faibles:17},checks:['22 products before and after','summary includes all 22 risks','last-row change updates summary','blank input stays blank','no formula errors'],engine:'artifact-tool; native Excel recalculation not tested'},null,2));
 console.log('Export terminé : 22 scénarios ; 15 techniques, 5 utilisation, 2 cyber ; 5 cibles moyennes et 17 faibles.');
