@@ -10,6 +10,8 @@ s.getRange('C2').values=[['eq02 — Équipe 2']];
 s.getRange('C3').dataValidation={rule:{type:'list',values:['A (chute)','B (insuffisance cardiaque)','C (BPCO)','D (AVC)','E (escarres)','F (pilulier)',d.cas.replace(',', ' —')]}};
 s.getRange('C3').values=[[d.cas.replace(',', ' —')]];
 s.getRange('C4').values=[[d.finalite]];
+s.getRange('C4:F4').format.wrapText=true;
+s.getRange('C4:F4').format.verticalAlignment='center';
 s.getRange('A4:R4').format.rowHeight=40;
 s.mergeCells('A5:R5');
 s.getRange('A5').values=[['16/10/2026 — Cotations pédagogiques : résiduels CIBLES après mesures proposées et essais. Prototype non validé. Voir « Suivi et sources ».']];
@@ -76,7 +78,7 @@ console.log((await wb.inspect({kind:'region',sheetId:'Synthèse',range:'A12:H16'
 const check=syn.getRange('B12:B16').values.map(r=>r[0]);
 if(JSON.stringify(check)!==JSON.stringify([10,5,3,2,0]))throw new Error('Contrôles incorrects '+JSON.stringify(check));
 for(let i=0;i<4;i++)for(const row of wb.worksheets.getItemAt(i).getUsedRange().values)for(const v of row)if(typeof v==='string'&&/^#(REF!|DIV\/0!|VALUE!|NAME\?|N\/A|NUM!|SPILL!)/.test(v))throw new Error(v);
-const ranges=[['Analyse de risques','A1:J8','en_tete'],['Lisez-moi','A19:A25','lisez_moi'],['Échelles','A24:D32','echelles'],['Synthèse','A1:H19','synthese'],['Suivi et sources','A1:D6','suivi'],['Suivi et sources','A15:D18','sources']];
+const ranges=[['Analyse de risques','A1:R8','en_tete'],['Lisez-moi','A19:A25','lisez_moi'],['Échelles','A24:D32','echelles'],['Synthèse','A1:H19','synthese'],['Suivi et sources','A1:D6','suivi'],['Suivi et sources','A15:D18','sources']];
 for(let i=9;i<=18;i+=2){ranges.push(['Analyse de risques',`A${i}:J${i+1}`,`analyse_${i}_avant`]);ranges.push(['Analyse de risques',`K${i}:R${i+1}`,`analyse_${i}_apres`]);}
 for(const [sheetName,range,file] of ranges){const p=await wb.render({sheetName,range,scale:1,format:'png'});await fs.writeFile(path.join(root,`tmp/${file}.png`),new Uint8Array(await p.arrayBuffer()));}
 const out=await SpreadsheetFile.exportXlsx(wb);await out.save(path.join(root,'analyses/m3/analyse_risques_eq02.xlsx'));
