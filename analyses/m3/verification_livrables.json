@@ -1,25 +1,31 @@
 {
   "date": "2026-10-16",
   "equipe": 2,
-  "risques": 10,
-  "formules_originales_preservees": 77,
+  "risques": 22,
+  "formules_modele_verifiees_et_plages_etendues": 74,
   "controles_synthese": [
-    10,
+    22,
+    15,
     5,
-    3,
     2,
     0
   ],
   "avant": {
-    "moyen": 7,
-    "élevé": 3
+    "moyen": 16,
+    "élevé": 6
   },
   "residuels_cibles": {
-    "faible": 8,
-    "moyen": 2
+    "faible": 17,
+    "moyen": 5
   },
-  "pages_pdf": 5,
-  "liens_pdf": 9,
+  "pages_pdf_risques": 9,
+  "liens_pdf_risques": 21,
+  "pages_pdf_aipd": 5,
+  "liens_pdf_aipd": 10,
+  "moteur_calcul": "artifact-tool ; dernière ligne et entrée vide testées dans le générateur",
+  "excel_natif_teste": false,
+  "aipd_statut": "préparatoire ; mesures et gouvernance à compléter",
+  "gestion_conservation_implementee": false,
   "essais_materiels_realises": false,
   "supports_sha256": {
     "TP_M3_2_Analyse_risques.xlsx": "0bbefee4d54cc09bf7940afa15315059a2a8212483b3290a01134c6a52502d8d",
