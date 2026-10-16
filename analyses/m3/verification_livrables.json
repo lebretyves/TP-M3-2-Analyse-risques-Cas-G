@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-16",
+  "equipe": 2,
+  "risques": 10,
+  "formules_originales_preservees": 77,
+  "controles_synthese": [
+    10,
+    5,
+    3,
+    2,
+    0
+  ],
+  "avant": {
+    "moyen": 7,
+    "élevé": 3
+  },
+  "residuels_cibles": {
+    "faible": 8,
+    "moyen": 2
+  },
+  "pages_pdf": 5,
+  "liens_pdf": 9,
+  "essais_materiels_realises": false,
+  "supports_sha256": {
+    "TP_M3_2_Analyse_risques.xlsx": "0bbefee4d54cc09bf7940afa15315059a2a8212483b3290a01134c6a52502d8d",
+    "TP_M3_2_Analyse_risques_etudiant.pdf": "79cea624f5714bc33609f187b2e11c3cb4761734a078cac13c8b237a01ea47c7"
+  }
+}

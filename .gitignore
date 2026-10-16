@@ -1,0 +1,10 @@
+/tmp/
+node_modules/
+__pycache__/
+*.pyc
+*.inspect.ndjson
+~$*
+.env
+.env.*
+*.pem
+*.key
