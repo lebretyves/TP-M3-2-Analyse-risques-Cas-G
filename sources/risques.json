@@ -2,8 +2,8 @@
   "equipe": "Équipe 2",
   "date": "19 octobre 2026",
   "cas": "G — Souris ergonomique P4, batterie unique 1 500 mAh",
-  "finalite": "Contribuer au repérage des risques de complications cardiovasculaires liés au stress et à la sédentarité, en fournissant au professionnel de santé des indicateurs physiologiques recueillis pendant l’utilisation de l’ordinateur.",
-  "perimetre": "Destination médicale envisagée, non réalisée ni validée cliniquement. Adultes utilisant un ordinateur ; observation de tendances sur plusieurs heures et sur la journée. La population, les événements cardiovasculaires visés, l’horizon de prédiction et les décisions médicales restent à définir. Aucune alerte d’urgence ni décision thérapeutique automatique validée. GSR seul ne diagnostique pas le stress ; immobilité de la souris ne mesure pas la sédentarité ; PPG et SpO2 ne constituent pas un ECG ni un score de risque cardiovasculaire validé.",
+  "finalite": "Suivre les indicateurs physiologiques et leurs tendances pendant l’utilisation de l’ordinateur, et estimer un risque personnalisé de complications cardiovasculaires en lien avec le stress et la sédentarité, afin d’informer la prévention et de permettre un partage choisi avec un professionnel de santé.",
+  "perimetre": "Hypothèse du TP : usage personnel B2C, suivi des indicateurs et de leurs tendances ET estimation personnalisée du risque cardiovasculaire. Le score informe une démarche de prévention ; il ne sert pas seul à diagnostiquer, choisir un traitement ou décider de différer des soins. Population précise, événements, horizon et données cliniques complémentaires restent à définir. Le prototype R3 acquiert des signaux ; aucun score cardiovasculaire validé n’est implémenté. GSR seul ne diagnostique pas le stress ; immobilité de la souris ne mesure pas la sédentarité ; PPG ne constitue pas un ECG.",
   "methode": "Échelles du TP conservées. Cotations préparatoires et probabilités qualitatives, sans mesures de fréquence. Pour 14 scénarios d’information médicale fausse ou manquante : G3 conservatrice, conséquences graves non exclues ; cibles conditionnelles aux essais. La matrice ne détermine ni classe MDR ni bénéfice clinique.",
   "risques": [
     {
@@ -11,7 +11,7 @@
       "type": "Technique",
       "danger": "Perte d'alimentation ou de liaison : suivi interrompu",
       "sequence": "Batterie unique épuisée ou liaison BLE perdue → acquisition arrêtée → anciennes données prises pour un suivi continu",
-      "situation": "Le professionnel évalue les tendances physiologiques à partir d’un enregistrement incomplet présenté comme continu.",
+      "situation": "L’utilisateur ou le professionnel évalue les tendances physiologiques à partir d’un enregistrement incomplet présenté comme continu.",
       "dommage": "Retard de consultation ou de prise en charge cardiovasculaire après une fausse assurance, avec aggravation grave, séquelles ou décès possibles dans le scénario défavorable.",
       "g": 3,
       "p": 2,
@@ -65,7 +65,7 @@
       "type": "Technique",
       "danger": "Mesures fausses prises pour des mesures valides",
       "sequence": "Mouvement, mauvais contact PPG/GSR, température de coque ou capteur défaillant → signal biaisé → donnée conservée comme fiable",
-      "situation": "Le professionnel reçoit un indicateur erroné et adapte la prise en charge sur cette base.",
+      "situation": "L’utilisateur ou le professionnel reçoit un indicateur erroné et adapte la prise en charge sur cette base.",
       "dommage": "Retard de consultation ou de prise en charge cardiovasculaire après une fausse assurance, avec aggravation grave, séquelles ou décès possibles dans le scénario défavorable.",
       "g": 3,
       "p": 2,
@@ -81,9 +81,9 @@
     {
       "id": 5,
       "type": "Technique",
-      "danger": "Interprétation médicale erronée par le futur logiciel",
-      "sequence": "GSR assimilé au stress, immobilité assimilée à la sédentarité ou modèle non validé → risque cardiovasculaire mal estimé → décision de suivi inadaptée.",
-      "situation": "L’utilisateur ou le professionnel s’appuie sur une estimation cardiovasculaire sans validité démontrée.",
+      "danger": "Score cardiovasculaire personnalisé erroné",
+      "sequence": "Signaux ou données complémentaires inadéquats, modèle non validé → risque personnalisé mal estimé → score interprété à tort comme un diagnostic ou une garantie de sécurité",
+      "situation": "L’utilisateur ou le professionnel se fie au score personnalisé pour décider du suivi, au-delà de son rôle prévu d’information de prévention.",
       "dommage": "Retard de consultation ou de prise en charge cardiovasculaire après une fausse assurance, avec aggravation grave, séquelles ou décès possibles dans le scénario défavorable.",
       "g": 3,
       "p": 2,
@@ -94,7 +94,7 @@
       "pa": 1,
       "justification": "G3 conservatrice pour le scénario cardiovasculaire défavorable ; le périmètre ne permet pas d’exclure séquelles ou décès après une fausse assurance. P2 qualitative, sans fréquence mesurée. Cible G3 × P1 = 3, moyenne, uniquement si les mesures et essais justifient P1 ; acceptation différée. Le score du TP ne détermine pas la classe MDR. Vérification T5 et validation du parcours médical nécessaires.",
       "etat": "Le dossier M3-1 décrit la finalité envisagée. R3 acquiert et présente des signaux ; aucun algorithme médical ou modèle d'IA validé n'est fourni.",
-      "test": "T5 — Fixer avec un clinicien événements, population, référence et décisions. Prévoir une étude adaptée avec calibration, faux négatifs, faux positifs, couverture et utilité ajoutée aux facteurs cliniques usuels. Une corrélation au stress ne valide pas une prédiction de complications."
+      "test": "T5 — Définir avec un clinicien population, événement, horizon et données complémentaires. Valider calibration, discrimination, faux résultats et utilité ajoutée. Tester la compréhension du score et les décisions prises ; réexaminer la classe si les conséquences justifient IIb/III."
     },
     {
       "id": 6,
@@ -173,7 +173,7 @@
       "type": "Cybersécurité",
       "danger": "Usurpation de la souris ou substitution de mesures",
       "sequence": "Un appareil reprend le nom BLE SourisSante-R3 ou des données sont rejouées → passerelle accepte la mauvaise source → résultat attribué à la personne",
-      "situation": "Le professionnel décide à partir de données fabriquées ou appartenant à une autre session.",
+      "situation": "L’utilisateur ou le professionnel décide à partir de données fabriquées ou appartenant à une autre session.",
       "dommage": "Retard de consultation ou de prise en charge cardiovasculaire après une fausse assurance, avec aggravation grave, séquelles ou décès possibles dans le scénario défavorable.",
       "g": 3,
       "p": 2,
@@ -474,7 +474,7 @@
       "id": "S1",
       "titre": "TP M3-1 : finalité du cas G et limites de classification",
       "url": "https://github.com/lebretyves/TP-M3-1-Classification-Produits/blob/main/analyses/m3/cas_g.json",
-      "detail": "Finalité cardiovasculaire réalignée le 19 octobre. L’ancienne proposition IIa pour les TMS n’est pas reconduite. Classe à déterminer selon usage et conséquences des erreurs."
+      "detail": "Deux fonctions confirmées : suivi des tendances et score cardiovasculaire personnalisé. IIa est une hypothèse de prévention informative à confronter aux conséquences des erreurs. Les scénarios graves restent à instruire."
     },
     {
       "id": "S2",

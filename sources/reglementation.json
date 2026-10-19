@@ -7,11 +7,11 @@
     },
     {
       "titre": "Destination médicale envisagée",
-      "texte": "Contribuer au repérage des risques de complications cardiovasculaires liés au stress et à la sédentarité, en fournissant au professionnel de santé des indicateurs physiologiques recueillis pendant l’utilisation de l’ordinateur. Destination envisagée, à développer et à valider. Le suivi porte sur des tendances ; événements, horizon et décisions restent à définir. [REG1, REG2]"
+      "texte": "Suivre les indicateurs physiologiques et leurs tendances pendant l’utilisation de l’ordinateur, et estimer un risque personnalisé de complications cardiovasculaires en lien avec le stress et la sédentarité, afin d’informer la prévention et de permettre un partage choisi avec un professionnel de santé. Deux fonctions prévues, non validées dans R3. [REG1, REG2]"
     },
     {
-      "titre": "Classe à déterminer ; règle 11 à examiner",
-      "texte": "La classe IIa de l’ancien dossier ne peut pas être reconduite. Selon la fonction et les décisions permises : IIa dans le cas général prévu par la règle 11, IIb pour une détérioration grave ou une intervention chirurgicale, III pour un décès ou une détérioration irréversible. Le contrôle de paramètres vitaux avec danger immédiat relève de IIb. Usage non urgent et professionnel dans la boucle ne suffisent pas à conclure. [REG1, REG2]"
+      "titre": "Classe probable IIa : hypothèse du TP",
+      "texte": "Hypothèse : suivi physiologique de routine et score informant la prévention, sans piloter seul le diagnostic ou le traitement. Règle 11 : IIa envisagée. Réexaminer IIb/III selon les conséquences réelles des décisions erronées. La vente B2C, le caractère non urgent et une notice de limites ne suffisent pas à garantir IIa. [REG1, REG2]"
     },
     {
       "titre": "Périmètre matériel à préciser",
@@ -19,7 +19,7 @@
     },
     {
       "titre": "Conséquences pour le projet",
-      "texte": "Fixer la destination, qualifier les fonctions puis la classe et la procédure. Si IIa, IIb ou III : organisme notifié selon l’article 52. Prévoir sécurité, performances, évaluation clinique et documentation technique. G3 conservatrice dans le TP ne classe pas automatiquement le logiciel en III. [REG1]"
+      "texte": "Sous l’hypothèse IIa : organisme notifié selon l’article 52, système qualité, évaluation clinique et documentation technique. Les scénarios G3 de fausse assurance restent ouverts. Vérifier les décisions réellement prises et leur gravité avant de confirmer la classe ; G × P ne détermine pas la classe MDR. [REG1]"
     }
   ],
   "cadre": "MDR = règlement (UE) 2017/745. Le rapprochement ci-dessous vise la future destination médicale ; il ne constitue ni une liste exhaustive des obligations ni une preuve de conformité. Pour tous les risques : annexe I, § 3-4 (gestion et réduction des risques) ; annexe II, § 4-6 (traçabilité exigences, preuves et validation).",
@@ -68,7 +68,7 @@
       "theme": "Interprétation médicale",
       "references": "MDR : art. 61 ; annexe I § 17 ; annexe VIII règle 11",
       "exigence": "Justifier performances cliniques et classification.",
-      "application": "Définir les complications cardiovasculaires, la population, l’horizon et les décisions. Évaluer les faux négatifs, faux positifs et conséquences. Examiner IIa/IIb/III selon la règle 11, sans déduire la classe du score G × P. Des indicateurs de stress ne démontrent pas la valeur prédictive cardiovasculaire."
+      "application": "Valider les deux fonctions : tendances et score personnalisé. Définir population, événements, horizon et données nécessaires. Évaluer calibration, discrimination et utilité ajoutée, puis conséquences des décisions. IIa reste une hypothèse de prévention informative ; réexaminer IIb/III si nécessaire."
     },
     {
       "ids": [
@@ -129,7 +129,7 @@
     {
       "id": "REG2",
       "titre": "MDCG 2019-11 rév. 1, juin 2025 : qualification et règle 11",
-      "url": "https://health.ec.europa.eu/document/download/b45335c5-1679-4c71-a91c-fc7a4d37f12b_en?filename=md_mdcg_2019_11_guidance_qualification_classification_software_en.pdf"
+      "url": "https://health.ec.europa.eu/document/download/b45335c5-1679-4c71-a91c-fc7a4d37f12b_en?filename=mdcg_2019_11_en.pdf"
     },
     {
       "id": "REG3",

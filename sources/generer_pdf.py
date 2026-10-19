@@ -39,7 +39,7 @@ add('3. Quels risques sont les plus élevés ?','HeadingCustom')
 add('Le score maximal retenu est <b>6</b>, pour 20 scénarios. Les 14 scénarios d’information médicale fausse ou manquante passent à G3 conservatrice : des conséquences graves ne sont pas exclues. Les dangers physiques restent examinés. Les scénarios de gravité 3 demandent une attention prioritaire. Certains partagent des causes ; les comptes ne représentent pas des événements indépendants.')
 tab([['Niveau','Avant mesures','Après mesures : cible'],['Élevé','20','0'],['Moyen','2','19'],['Faible','0','3']],[170,150,190])
 add('G et P : 1 à 3 ; risque = G × P. Faible : 1–2 ; moyen : 3–4 ; élevé : 6–9. Les probabilités sont des hypothèses pédagogiques. <b>Les scores après mesures sont conditionnels aux essais : ils ne décrivent pas la sécurité actuelle du prototype.</b>','SmallText')
-story.append(PageBreak());title('Destination médicale et classe à déterminer')
+story.append(PageBreak());title('Destination médicale et hypothèse IIa')
 for q in REG['qualification']:
  add(q['titre'],'HeadingCustom');add(escape(q['texte']))
 add('Références réglementaires et guides','HeadingCustom')

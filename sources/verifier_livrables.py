@@ -53,7 +53,7 @@ for phrase in ['A1.','A2.','A3.','A4.','A5.','A6.','durée du suivi','suppressio
 def level(x):return 'élevé' if x>=6 else 'moyen' if x>=3 else 'faible'
 report={'date':'2026-10-19','equipe':2,'risques':22,'formules_modele_verifiees_et_plages_etendues':count,'controles_synthese':checks,'avant':dict(Counter(level(r['g']*r['p']) for r in data['risques'])),'residuels_cibles':dict(Counter(level(r['ga']*r['pa']) for r in data['risques'])),'pages_pdf_risques':len(pdf),'liens_pdf_risques':len(links),'pages_pdf_aipd':len(aipd),'liens_pdf_aipd':10,'moteur_calcul':'artifact-tool ; dernière ligne et entrée vide testées dans le générateur','excel_natif_teste':False,'aipd_statut':'préparatoire ; mesures et gouvernance à compléter','gestion_conservation_implementee':False,'essais_materiels_realises':False,'supports_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (ROOT/'supports').iterdir() if p.is_file()}}
 report['risques_relies_aux_exigences']=22
-report['classe_logiciel_proposee']='À déterminer ; règle 11 à examiner, IIa non reconduit'
+report['classe_logiciel_proposee']='IIa : hypothèse du TP pour suivi et score informatif de prévention ; réexaminer IIb/III selon conséquences'
 # A previous native Excel check remains evidence only for the identical workbook.
 native_path=ROOT/'analyses/m3/verification_excel_natif.json'
 if native_path.exists():

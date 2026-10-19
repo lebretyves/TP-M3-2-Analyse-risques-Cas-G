@@ -82,7 +82,7 @@ read.getRange('A16').values=[['Analyse de risques : dix risques initiaux conserv
 read.getRange('A17').values=[['Synthèse : matrices et comptes des 22 scénarios. Des scénarios peuvent partager une cause ; les comptes ne mesurent pas des événements indépendants.']];
 read.getRange('A19').values=[['Périmètre et relecture']];
 read.getRange('A20').values=[['Failles et preuves : faiblesse possible, état des connaissances, essais à réaliser, sources et choix de relecture. Les cellules « Décision » et « Notes de relecture » sont à compléter.']];
-read.getRange('A22').values=[['Destination : repérage des risques cardiovasculaires associés au stress et à la sédentarité. Population, événements, horizon et décisions à préciser. R3 acquiert des signaux, sans prédiction médicale validée.']];
+read.getRange('A22').values=[['Deux fonctions prévues : suivi des indicateurs et tendances, ET score cardiovasculaire personnalisé. Hypothèse IIa pour une information de prévention ; conséquences des décisions à vérifier. R3 ne calcule pas ce score.']];
 read.getRange('A23').values=[['G et P proposés de 1 à 3. P2 = hypothèse qualitative de dommage possible, pas une fréquence observée. Résiduel cible : G inchangée et P1 seulement si les mesures et essais justifient cette réduction. Sinon conserver ou revoir la cotation initiale.']];
 read.getRange('A24').values=[['Scénarios médicaux : G3 conservatrice car un faux résultat peut contribuer à un retard de prise en charge avec conséquences graves. Cette hypothèse reste à examiner avec un clinicien ; elle ne détermine pas la classe MDR.']];
 read.getRange('A25').values=[['Les constats logiciels ne prouvent ni une fréquence de dommage ni un incident matériel. La mise à jour malveillante évoquée au n° 15 est conditionnelle ; aucune vulnérabilité du chargeur de démarrage n’a été établie.']];
@@ -179,7 +179,7 @@ for(const [i,source] of reg.sources.entries()){
  legal.getRange(`A${row}:G${row}`).format={font:{name:'Arial',size:11},wrapText:true,rowHeight:42,verticalAlignment:'top'};
 }
 legal.freezePanes.freezeRows(10);legal.freezePanes.freezeColumns(2);
-read.getRange('A32').values=[['Réglementation : destination médicale future, classe à déterminer pour le logiciel (règle 11 à examiner), statut matériel à préciser et correspondance entre chacun des 22 risques et les exigences à vérifier. La cotation du TP ne détermine pas la classe réglementaire.']];
+read.getRange('A32').values=[['Réglementation : deux fonctions médicales futures, hypothèse IIa pour suivi et score informatif de prévention (règle 11), matériel à examiner séparément. Les 22 risques restent liés aux exigences et vérifications. Réexaminer IIb/III selon les conséquences des décisions ; G × P ne détermine pas la classe.']];
 read.getRange('A32').format={wrapText:true,rowHeight:64,font:{size:11},verticalAlignment:'top'};
 
 wb.recalculate();

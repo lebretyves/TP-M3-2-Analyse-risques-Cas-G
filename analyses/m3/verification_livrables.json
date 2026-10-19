@@ -32,6 +32,6 @@
     "TP_M3_2_Analyse_risques_etudiant.pdf": "79cea624f5714bc33609f187b2e11c3cb4761734a078cac13c8b237a01ea47c7"
   },
   "risques_relies_aux_exigences": 22,
-  "classe_logiciel_proposee": "À déterminer ; règle 11 à examiner, IIa non reconduit",
+  "classe_logiciel_proposee": "IIa : hypothèse du TP pour suivi et score informatif de prévention ; réexaminer IIb/III selon conséquences",
   "excel_natif_rapport": "verification_excel_natif.json"
 }
