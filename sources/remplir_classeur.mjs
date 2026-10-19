@@ -16,8 +16,8 @@ s.getRange('A1').values=[['Analyse de risques — Cas G — 22 scénarios']];
 s.getRange('C2').values=[['eq02 — Équipe 2']];
 s.getRange('C3').dataValidation={rule:{type:'list',values:['G — Souris P4 — batterie unique 1 500 mAh']}};
 s.getRange('C3').values=[['G — Souris P4 — batterie unique 1 500 mAh']];
-s.getRange('C4').values=[['Usage envisagé : aide au professionnel pour la prise en charge des TMS. Fonction médicale non réalisée ni validée.']];
-s.getRange('C4:F4').format.wrapText=true;s.getRange('A4:R4').format.rowHeight=40;
+s.getRange('C4').values=[[data.finalite]];
+s.getRange('C4:F4').format.wrapText=true;s.getRange('A4:R4').format.rowHeight=88;
 
 s.mergeCells('A5:R5');
 s.getRange('A5').values=[['22 scénarios : risques initiaux 1 à 10 et ajouts 11 à 22. Cotations à relire. Résiduels = cibles après mesures vérifiées, pas sécurité démontrée du prototype.']];
@@ -72,19 +72,19 @@ syn.getRange('A16').values=[['Élevés résiduels cibles']];
 syn.getRange('B16').formulas=[[`=COUNTIFS('Analyse de risques'!$P$9:$P$${last},">="&'Échelles'!$C$15)`]];
 syn.getRange('C16').formulas=[['=IF(B16=0,"Aucun élevé dans les cibles ; essais encore nécessaires","Cibles à revoir : risque élevé restant")']];
 syn.getRange('A12:H16').format.wrapText=true;syn.getRange('A12:H16').format.rowHeight=34;
-syn.mergeCells('A18:H19');syn.getRange('A18').values=[['N° 2, 3, 11, 12 et 20 : cibles moyennes, acceptation différée. Les autres cibles faibles supposent les mesures réalisées et vérifiées. Les probabilités proposées ne sont pas des fréquences mesurées.']];
+syn.mergeCells('A18:H19');syn.getRange('A18').values=[['19 cibles moyennes : dangers physiques graves et scénarios médicaux réévalués. N° 6, 7 et 9 : cibles faibles. Toute acceptation reste conditionnelle aux preuves ; P1 n’est pas démontré.']];
 syn.getRange('A18:H19').format={wrapText:true,rowHeight:27,font:{size:11,color:'#8A3E00'}};
 
 const read=wb.worksheets.getItem('Lisez-moi');
 read.getRange('A1').values=[['TP M3-2 — Analyse de risques du cas G']];
-read.getRange('A3').values=[['Proposition de relecture du 16 octobre 2026. Le modèle et ses seuils sont conservés. Les 22 scénarios ne constituent pas une analyse exhaustive ni une validation du prototype.']];
+read.getRange('A3').values=[['Réalignement cardiovasculaire du 19 octobre 2026. Le modèle et ses seuils sont conservés. Les 22 scénarios ne constituent pas une analyse exhaustive ni une validation du prototype.']];
 read.getRange('A16').values=[['Analyse de risques : dix risques initiaux conservés et douze scénarios ajoutés, numérotés 11 à 22. Colonnes et seuils du TP conservés.']];
 read.getRange('A17').values=[['Synthèse : matrices et comptes des 22 scénarios. Des scénarios peuvent partager une cause ; les comptes ne mesurent pas des événements indépendants.']];
 read.getRange('A19').values=[['Périmètre et relecture']];
 read.getRange('A20').values=[['Failles et preuves : faiblesse possible, état des connaissances, essais à réaliser, sources et choix de relecture. Les cellules « Décision » et « Notes de relecture » sont à compléter.']];
-read.getRange('A22').values=[['Usage médical envisagé : aide au professionnel pour la prise en charge des TMS chez un adulte utilisant un ordinateur, suivi non urgent. R3 mesure des signaux ; il ne produit pas de recommandation médicale validée.']];
+read.getRange('A22').values=[['Destination : repérage des risques cardiovasculaires associés au stress et à la sédentarité. Population, événements, horizon et décisions à préciser. R3 acquiert des signaux, sans prédiction médicale validée.']];
 read.getRange('A23').values=[['G et P proposés de 1 à 3. P2 = hypothèse qualitative de dommage possible, pas une fréquence observée. Résiduel cible : G inchangée et P1 seulement si les mesures et essais justifient cette réduction. Sinon conserver ou revoir la cotation initiale.']];
-read.getRange('A24').values=[['Pour les dommages liés au suivi, G2 suppose des conséquences réversibles nécessitant des soins. Si une décision critique, une séquelle ou une surveillance d’hypoxémie devient possible, revoir le périmètre et la gravité.']];
+read.getRange('A24').values=[['Scénarios médicaux : G3 conservatrice car un faux résultat peut contribuer à un retard de prise en charge avec conséquences graves. Cette hypothèse reste à examiner avec un clinicien ; elle ne détermine pas la classe MDR.']];
 read.getRange('A25').values=[['Les constats logiciels ne prouvent ni une fréquence de dommage ni un incident matériel. La mise à jour malveillante évoquée au n° 15 est conditionnelle ; aucune vulnérabilité du chargeur de démarrage n’a été établie.']];
 read.getRange('A26').values=[['Suivi et sources documente les risques initiaux (sources S0 à S8). Failles et preuves documente les ajouts (sources C0 à C11). Les cotations résiduelles restent conditionnelles aux mesures et essais.']];
 read.getRange('A28').values=[['Analyse de risques du dispositif : quelles pannes ou erreurs peuvent causer un dommage ? Exemple adapté : une mesure erronée peut-elle conduire à un conseil inadapté ?']];
@@ -179,7 +179,7 @@ for(const [i,source] of reg.sources.entries()){
  legal.getRange(`A${row}:G${row}`).format={font:{name:'Arial',size:11},wrapText:true,rowHeight:42,verticalAlignment:'top'};
 }
 legal.freezePanes.freezeRows(10);legal.freezePanes.freezeColumns(2);
-read.getRange('A32').values=[['Réglementation : destination médicale future, classe IIa proposée pour le logiciel (règle 11), statut matériel à préciser et correspondance entre chacun des 22 risques et les exigences à vérifier. La cotation du TP ne détermine pas la classe réglementaire.']];
+read.getRange('A32').values=[['Réglementation : destination médicale future, classe à déterminer pour le logiciel (règle 11 à examiner), statut matériel à préciser et correspondance entre chacun des 22 risques et les exigences à vérifier. La cotation du TP ne détermine pas la classe réglementaire.']];
 read.getRange('A32').format={wrapText:true,rowHeight:64,font:{size:11},verticalAlignment:'top'};
 
 wb.recalculate();
@@ -192,7 +192,7 @@ const counts=syn.getRange('B12:B16').values.map(x=>x[0]);
 if(JSON.stringify(counts)!==JSON.stringify([22,15,5,2,0]))throw new Error('Summary '+JSON.stringify(counts));
 // Exercise the newly extended final row, then restore the proposed inputs.
 s.getRange(`O${last}`).values=[[3]];wb.recalculate();
-if(s.getRange(`P${last}`).values[0][0]!==6||syn.getRange('B16').values[0][0]!==1)throw new Error('New row not included in formulas '+JSON.stringify({risk:s.getRange(`P${last}`).values,level:s.getRange(`Q${last}`).values,count:syn.getRange('B16').values,formula:syn.getRange('B16').formulas}));
+if(s.getRange(`P${last}`).values[0][0]!==9||syn.getRange('B16').values[0][0]!==1)throw new Error('New row not included in formulas '+JSON.stringify({risk:s.getRange(`P${last}`).values,level:s.getRange(`Q${last}`).values,count:syn.getRange('B16').values,formula:syn.getRange('B16').formulas}));
 s.getRange(`O${last}`).values=[[null]];wb.recalculate();
 if(s.getRange(`P${last}`).values[0][0]!==''||s.getRange(`Q${last}`).values[0][0]!=='')throw new Error('Blank input is not blank output');
 s.getRange(`O${last}`).values=[[1]];wb.recalculate();
@@ -201,7 +201,7 @@ await fs.mkdir(new URL('tmp/previews_22/',root),{recursive:true});
 const previews=[['Lisez-moi','A22:A30','lisez_moi'],['Échelles','A24:D32','echelles'],['Synthèse','A1:H19','synthese'],['Failles et preuves','A1:H6','preuves_debut'],['Failles et preuves','A12:H15','preuves_fin'],['Failles et preuves','A21:H26','sources_debut'],['Failles et preuves','A31:H34','sources_fin'],['Suivi et sources','A1:D6','suivi'],['Analyse de risques','A1:R8','entete']];
 previews.push(['Réglementation','A1:G10','reg_cadre'],['Réglementation','A34:G39','reg_sources'],['Lisez-moi','A28:A32','reg_lisez_moi']);
 for(let lo=11;lo<=32;lo+=4)previews.push(['Réglementation',`A${lo}:G${Math.min(lo+3,32)}`,`reg_${lo}`]);
-for(const [lo,hi] of [[19,21],[22,24],[25,27],[28,30]]){
+for(const [lo,hi] of [[9,11],[12,14],[15,18],[19,21],[22,24],[25,27],[28,30]]){
  previews.push(['Analyse de risques',`A${lo}:J${hi}`,`avant_${lo}`]);previews.push(['Analyse de risques',`K${lo}:R${hi}`,`apres_${lo}`]);
 }
 for(const [sheetName,range,file] of previews){
@@ -211,5 +211,5 @@ const out=await SpreadsheetFile.exportXlsx(wb);
 const staged=fileURLToPath(new URL('tmp/analyse_risques_eq02_prepare.xlsx',root));
 await out.save(staged);
 await fs.copyFile(staged,fileURLToPath(new URL('analyses/m3/analyse_risques_eq02.xlsx',root)));
-await fs.writeFile(new URL('tmp/verification_22.json',root),JSON.stringify({scenarios:22,ids:data.risques.map(r=>r.id),counts,initial:{eleves:6,moyens:16,faibles:0},cible:{eleves:0,moyens:5,faibles:17},checks:['22 products before and after','summary includes all 22 risks','last-row change updates summary','blank input stays blank','no formula errors'],engine:'artifact-tool; native Excel recalculation not tested'},null,2));
-console.log('Export terminé : 22 scénarios ; 15 techniques, 5 utilisation, 2 cyber ; 5 cibles moyennes et 17 faibles.');
+await fs.writeFile(new URL('tmp/verification_22.json',root),JSON.stringify({scenarios:22,ids:data.risques.map(r=>r.id),counts,initial:{eleves:20,moyens:2,faibles:0},cible:{eleves:0,moyens:19,faibles:3},checks:['22 products before and after','summary includes all 22 risks','last-row change updates summary','blank input stays blank','no formula errors'],engine:'artifact-tool; native Excel recalculation not tested'},null,2));
+console.log('Export terminé : 22 scénarios ; 15 techniques, 5 utilisation, 2 cyber ; 19 cibles moyennes et 3 faibles.');

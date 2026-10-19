@@ -42,15 +42,15 @@ def risk(title,scenario,impact,assessment,measures,test):
     p('<b>Vérification attendue.</b> '+test)
 
 page('Analyse d’impact sur la protection des données')
-p('<b>Cas G - Souris ergonomique connectée</b><br/>Équipe 2 | Version préparatoire du 16 octobre 2026')
+p('<b>Cas G - Souris ergonomique connectée</b><br/>Équipe 2 | Version préparatoire réalignée le 19 octobre 2026')
 p('Périmètre retenu : données conservées sur l’ordinateur de la personne qui utilise la souris. Historique disponible pendant le suivi, avec suppression à tout moment.')
 h('La question adaptée à notre projet')
 p('La souris collecte des signaux physiologiques et des mouvements pendant son utilisation. Leur rapprochement avec les horaires et les sessions peut révéler des habitudes ou des informations de santé. Qui peut lire les fichiers sur le PC ? Quelles mesures sont réellement nécessaires au suivi ? Comment l’utilisateur consulte-t-il, exporte-t-il et supprime-t-il son historique ?')
 h('Traitement et personnes concernées')
-p('Le prototype R3 acquiert et affiche des mesures expérimentales. La finalité future envisagée est une aide au professionnel pour la prise en charge des troubles musculosquelettiques (TMS), chez un adulte utilisant un ordinateur, en suivi non urgent. Le logiciel actuel ne fournit pas de recommandation médicale validée ni de décision thérapeutique automatique. [P1]')
+p('Le prototype R3 acquiert et affiche des mesures expérimentales. La finalité future est le repérage des risques de complications cardiovasculaires liés au stress et à la sédentarité, chez un adulte utilisant un ordinateur. Population, événements et décisions restent à définir. Le logiciel actuel ne fournit pas de recommandation médicale validée ni de décision thérapeutique automatique. [P1]')
 table(['Données présentes dans R3','Utilité et limites'],[
-('Pouls calculé, SpO2 expérimentale, signaux optiques IR/rouge, qualité PPG','Mesures au contact de la main. Leur utilité pour les TMS reste à démontrer.'),
-('GSR, accélérations de la souris, température de contact','Pas de diagnostic de stress, pas d’angle anatomique du poignet, pas de température centrale.'),
+('Pouls calculé, SpO2 expérimentale, signaux optiques IR/rouge, qualité PPG','Mesures au contact de la main. Leur valeur pour évaluer un risque cardiovasculaire reste à démontrer.'),
+('GSR, accélérations de la souris, température de contact','Pas de diagnostic de stress, immobilité non équivalente à sédentarité, pas de température centrale.'),
 ('Horodatages, session et connexion, états et erreurs techniques','Relier les mesures et diagnostiquer une acquisition. Les identifiants de session ne rendent pas les données anonymes.')],[205,300])
 h('Circulation des données')
 p('Capteurs de la souris → liaison Bluetooth LE → passerelle sur le PC → fichier CSV local → tableau de bord local. Le code comporte une option MQTT vers 127.0.0.1:1883. Aucun serveur distant n’est retenu dans le périmètre. Les sauvegardes du PC et l’exposition réseau du tableau de bord restent à vérifier. [P1]')
@@ -138,7 +138,7 @@ p('Éléments projet : choix de stockage et d’historique confirmés par l’ut
 def footer(c,doc):
     c.saveState();c.setStrokeColor(colors.HexColor('#CFD9E0'));c.line(45,39,A4[0]-45,39)
     c.setFont('Arial',8);c.setFillColor(colors.HexColor('#51636F'))
-    c.drawString(45,26,'Cas G - AIPD préparatoire - 16 octobre 2026')
+    c.drawString(45,26,'Cas G - AIPD préparatoire - 19 octobre 2026')
     c.drawRightString(A4[0]-45,26,str(doc.page));c.restoreState()
 doc=SimpleDocTemplate(str(OUT),pagesize=A4,rightMargin=45,leftMargin=45,topMargin=38,bottomMargin=51,title='Analyse d’impact - Souris connectée Cas G',author='Équipe 2')
 doc.build(story,onFirstPage=footer,onLaterPages=footer)

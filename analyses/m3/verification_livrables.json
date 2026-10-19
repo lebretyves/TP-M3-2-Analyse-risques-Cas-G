@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-16",
+  "date": "2026-10-19",
   "equipe": 2,
   "risques": 22,
   "formules_modele_verifiees_et_plages_etendues": 74,
@@ -11,19 +11,19 @@
     0
   ],
   "avant": {
-    "moyen": 16,
-    "élevé": 6
+    "élevé": 20,
+    "moyen": 2
   },
   "residuels_cibles": {
-    "faible": 17,
-    "moyen": 5
+    "moyen": 19,
+    "faible": 3
   },
   "pages_pdf_risques": 11,
   "liens_pdf_risques": 25,
   "pages_pdf_aipd": 5,
   "liens_pdf_aipd": 10,
   "moteur_calcul": "artifact-tool ; dernière ligne et entrée vide testées dans le générateur",
-  "excel_natif_teste": false,
+  "excel_natif_teste": true,
   "aipd_statut": "préparatoire ; mesures et gouvernance à compléter",
   "gestion_conservation_implementee": false,
   "essais_materiels_realises": false,
@@ -32,5 +32,6 @@
     "TP_M3_2_Analyse_risques_etudiant.pdf": "79cea624f5714bc33609f187b2e11c3cb4761734a078cac13c8b237a01ea47c7"
   },
   "risques_relies_aux_exigences": 22,
-  "classe_logiciel_proposee": "IIa, règle 11 ; à confirmer selon destination et conséquences des erreurs"
+  "classe_logiciel_proposee": "À déterminer ; règle 11 à examiner, IIa non reconduit",
+  "excel_natif_rapport": "verification_excel_natif.json"
 }

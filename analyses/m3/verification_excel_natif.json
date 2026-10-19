@@ -1,0 +1,10 @@
+{
+  "path": "E:\\TP M3-2 Cas G\\analyses\\m3\\analyse_risques_eq02.xlsx",
+  "after_medium": 19,
+  "before_high": 20,
+  "value": 22,
+  "read_only": true,
+  "check": "Synthèse!B12",
+  "date": "2026-10-19",
+  "sha256": "5b3c99b3127e9dcb079bd25abdce015eaeee2085b1be0386689086eb90082343"
+}
